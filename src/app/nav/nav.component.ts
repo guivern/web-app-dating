@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
     .subscribe( resp => {
       console.log('Login exitoso!');
     }, err => {
-      console.log('Login fallido.');
+      console.log(err);
     });
   }
 
