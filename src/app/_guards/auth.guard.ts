@@ -7,13 +7,13 @@ import { CanActivate, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router, private alertify: AlertifyService){}
+  constructor(private auth: AuthService, private router: Router, private alertify: AlertifyService) { }
 
   canActivate(): boolean {
-    if(this.auth.loggedIn()) {
+    if (this.auth.loggedIn()) {
       return true;
     }
-    this.alertify.error('Debe iniciar sesión');
+    this.alertify.error('Debes iniciar sesión');
     this.router.navigate(['/home']);
     return false;
 
