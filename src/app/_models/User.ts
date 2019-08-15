@@ -10,6 +10,7 @@ export interface User {
     fotoUrl: string;
     ciudad: string;
     pais: string;
+    edad: Number;
     // propiedades opcionales
     intereses?: string;
     buscando?: string;

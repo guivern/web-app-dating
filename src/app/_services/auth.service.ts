@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(model: any) {
-    return this.http.post(`${environment.baseUrl}auth/login`, model)
+    return this.http.post(`${environment.apiBaseUrl}/auth/login`, model)
       .pipe(
         map((resp: any) => {
           const user = resp;
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   register(model: any) {
-    return this.http.post(`${environment.baseUrl}auth/register`, model);
+    return this.http.post(`${environment.apiBaseUrl}/auth/register`, model);
   }
 
   loggedIn() {
