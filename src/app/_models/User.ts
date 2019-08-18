@@ -5,6 +5,7 @@ export interface User {
     username: string;
     nombre: string;
     apellido: string;
+    introduccion: string;
     fechaCreacion: Date;
     ultimaConexion: Date;
     fotoUrl: string;
