@@ -15,18 +15,19 @@ export class MemberDetailComponent implements OnInit {
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadUser();
-  }
-
-  loadUser() {
-    // obtiene el id de la url y lo convierte en number
-    // ej url: members/5
-    const id = +this.route.snapshot.params['id'];
-    this.userService.getUser(id).subscribe((user: User) => {
-      this.user = user;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
     });
   }
+
+
+//  loadUser() {
+//    const id = +this.route.snapshot.params['id'];
+//    this.userService.getUser(id).subscribe((user: User) => {
+//      this.user = user;
+//    }, error => {
+//      this.alertify.error(error);
+//    });
+//  }
 
 }

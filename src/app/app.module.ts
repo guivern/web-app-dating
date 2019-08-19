@@ -1,3 +1,4 @@
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('datingToken');
@@ -58,7 +60,9 @@ export function tokenGetter() {
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
-      UserService
+      UserService,
+      MemberDetailResolver,
+      MemberListResolver,
    ],
    bootstrap: [
       AppComponent

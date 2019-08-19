@@ -2,23 +2,23 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user?.fotoUrl}}" alt="{{user?.nombre}}">
+        <img class="card-img-top img-thumbnail" src="{{user.fotoUrl}}" alt="{{user.nombre}}">
         <div class="card-body">
           <div>
             <strong>Location:</strong>
-            <p>{{user?.ciudad}}, {{user?.pais}}</p>
+            <p>{{user.ciudad}}, {{user.pais}}</p>
           </div>
           <div>
             <strong>Edad:</strong>
-            <p>{{user?.edad}}</p>
+            <p>{{user.edad}}</p>
           </div>
           <div>
             <strong>Ultima conexion:</strong>
-            <p>{{user?.ultimaConexion}}</p>
+            <p>{{user.ultimaConexion}}</p>
           </div>
           <div>
             <strong>Miembro desde:</strong>
-            <p>{{user?.fechaCreacion}}</p>
+            <p>{{user.fechaCreacion}}</p>
           </div>
         </div>
         <div class="card-footer">
@@ -34,13 +34,13 @@
         <tabset class="member-tabset">
           <tab heading="Sobre {{user?.nombre}}">
             <h4>Descripcion</h4>
-            <p>{{user?.introduccion}}</p>
+            <p>{{user.introduccion}}</p>
             <h4>Buscando</h4>
-            <p>{{user?.buscando}}</p>
+            <p>{{user.buscando}}</p>
           </tab>
           <tab heading="Intereses">
             <h4>Intereses</h4>
-            <p>{{user?.intereses}}</p>
+            <p>{{user.intereses}}</p>
           </tab>
           <tab heading="Fotos">
             <p>Aqui iran las fotos</p>
