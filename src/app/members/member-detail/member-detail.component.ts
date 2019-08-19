@@ -21,12 +21,12 @@ export class MemberDetailComponent implements OnInit {
   loadUser() {
     // obtiene el id de la url y lo convierte en number
     // ej url: members/5
-    let id = parseInt(this.route.snapshot.params['id']);
+    const id = +this.route.snapshot.params['id'];
     this.userService.getUser(id).subscribe((user: User) => {
       this.user = user;
     }, error => {
       this.alertify.error(error);
-    })
+    });
   }
 
 }
