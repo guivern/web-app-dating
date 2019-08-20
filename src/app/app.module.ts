@@ -23,6 +23,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 export function tokenGetter() {
    return localStorage.getItem('datingToken');
@@ -44,8 +45,10 @@ export function tokenGetter() {
       BrowserModule,
       HttpClientModule,
       FormsModule,
-      BsDropdownModule.forRoot(),
+      NgxGalleryModule,
       RouterModule.forRoot(routes),
+      BsDropdownModule.forRoot(),
+      TabsModule.forRoot(),
       JwtModule.forRoot({
          config: { // interceptor config
             tokenGetter: tokenGetter,
@@ -53,7 +56,6 @@ export function tokenGetter() {
             blacklistedRoutes: [`${environment.apiBaseUrl}/auth`]
          }
       }),
-      TabsModule.forRoot(),
    ],
    providers: [
       AuthService,

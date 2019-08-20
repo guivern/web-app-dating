@@ -1,5 +1,8 @@
 <div class="container mt-4">
   <div class="row">
+    <h2 class="ml-3">Perfil de {{user.nombre}}</h2>
+  </div>
+  <div class="row">
     <div class="col-sm-4">
       <div class="card">
         <img class="card-img-top img-thumbnail" src="{{user.fotoUrl}}" alt="{{user.nombre}}">
@@ -43,7 +46,7 @@
             <p>{{user.intereses}}</p>
           </tab>
           <tab heading="Fotos">
-            <p>Aqui iran las fotos</p>
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </tab>
           <tab heading="Mensajes">
             <p>Aqui iran los mensajes</p>
