@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { User } from '../_models/User';
 import { environment } from 'src/environments/environment';
 
-/*const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('datingToken')}`
-  })
-};*/
+// const httpOptions = {
+//  headers: new HttpHeaders({
+//    'Authorization': `Bearer ${localStorage.getItem('datingToken')}`
+//  })
+// };
 
 @Injectable({
   providedIn: 'root'
