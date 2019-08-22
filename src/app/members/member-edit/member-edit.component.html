@@ -4,11 +4,9 @@
       <h1>Tu Perfil</h1>
     </div>
     <div class="col-sm-8">
-      <div class="alert alert-info">
-        <p>
-          <strong>Info:</strong> Has hecho algunos cambios. Cualquier cambio no guardado
-          se perderá.
-        </p>
+      <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>Info:</strong> Has hecho algunos cambios. Cualquier cambio no
+        guardado se perderá.
       </div>
     </div>
   </div>
@@ -40,7 +38,7 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-success btn-block">Guardar</button>
+            <button form="editForm" [disabled]="!editForm.dirty" class="btn btn-success btn-block">Guardar</button>
           </div>
         </div>
       </div>
@@ -49,7 +47,7 @@
       <div class="tab-panel">
         <tabset class="member-tabset">
           <tab heading="Editar Perfil">
-            <form>
+            <form #editForm="ngForm" id="editForm" (ngSubmit) = "updateUser()">
               <h4>Descripcion</h4>
               <textarea
                 class="form-control"
