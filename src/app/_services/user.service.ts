@@ -28,7 +28,11 @@ export class UserService {
   }
 
   updateUser(id: number, user: User) {
-    return this.http.put(`${this.baseUrl}/users/${id}`,user);
+    return this.http.put(`${this.baseUrl}/users/${id}`, user);
+  }
+
+  setFotoPrincipal(userId: number, idFoto: number) {
+    return this.http.post(`${this.baseUrl}/users/${userId}/fotos/${idFoto}/principal`, {});
   }
 
 }
