@@ -88,7 +88,7 @@
             </form>
           </tab>
           <tab heading="Editar fotos">
-            <app-foto-editor [fotos]="user.fotos" (fotoPerfilActualizada)="actualizarFotoPerfil($event)"></app-foto-editor>
+            <app-foto-editor [fotos]="user.fotos" (fotoPerfilActualizada)="updateFoto($event)"></app-foto-editor>
           </tab>
         </tabset>
       </div>
