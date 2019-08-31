@@ -63,6 +63,7 @@ export class FotoEditorComponent implements OnInit {
       fotoActual.esPrincipal = false;
       foto.esPrincipal = true;
       this.fotoPerfilActualizada.emit(foto.url);
+      this.authService.updateFotoUrl(foto.url);
       this.alertify.success('Foto de perfil actualizada');
     }, error => {
       this.alertify.error(error);
