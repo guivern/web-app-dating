@@ -31,8 +31,12 @@ export class UserService {
     return this.http.put(`${this.baseUrl}/users/${id}`, user);
   }
 
-  setFotoPrincipal(userId: number, idFoto: number) {
-    return this.http.post(`${this.baseUrl}/users/${userId}/fotos/${idFoto}/principal`, {});
+  setFotoPrincipal(userId: number, fotoId: number) {
+    return this.http.post(`${this.baseUrl}/users/${userId}/fotos/${fotoId}/principal`, {});
+  }
+
+  deleteFoto(userId: number, fotoId: number) {
+    return this.http.delete(`${this.baseUrl}/users/${userId}/fotos/${fotoId}`);
   }
 
 }

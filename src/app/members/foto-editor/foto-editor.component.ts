@@ -69,4 +69,17 @@ export class FotoEditorComponent implements OnInit {
       this.alertify.error(error);
     });
   }
+
+  deleteFoto(id: number) {
+    const { id: userId } = this.authService.getCurrentUser();
+    
+    this.alertify.confirm('Esta seguro que desea eliminar esta foto?', () => {
+      this.userService.deleteFoto(userId, id).subscribe(() => {
+        this.fotos = this.fotos.filter(f => f.id != id);
+        this.alertify.success('La foto ha sido eliminada');
+      }, error => {
+        this.alertify.error(error);
+      });
+    });
+  }
 }
