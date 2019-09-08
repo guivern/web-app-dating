@@ -1,7 +1,7 @@
 import { AlertifyService } from './../_services/alertify.service';
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,16 +15,25 @@ export class RegisterComponent implements OnInit {
   model: any = {};
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', Validators.required)
-    }, // aqui van los custom validators
-      this.passwordMatchValidator);
+    this.createForm();
+  }
+
+  createForm() {
+    this.registerForm = this.formBuilder.group({
+      genero: ['hombre'],
+      username: ['', Validators.required],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
+      ciudad: ['', Validators.required],
+      pais: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(8)]],
+      confirmPassword: ['', Validators.required]
+    }, { validator: this.passwordMatchValidator });
   }
 
   register() {
