@@ -1,5 +1,6 @@
 import { User } from './../../_models/User';
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-member-card',
@@ -9,9 +10,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MemberCardComponent implements OnInit {
   @Input() user: User;
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  getFotoUrl() {
+    const defaultFotoUrl = '../../../assets/user.png';
+    const { fotoUrl } = this.user;
+    return fotoUrl || defaultFotoUrl;
   }
 
 }

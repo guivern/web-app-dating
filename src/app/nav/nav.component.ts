@@ -40,7 +40,10 @@ export class NavComponent implements OnInit {
   }
 
   getFotoUrl() {
-    return this.auth.getCurrentUser().fotoUrl;
+    const {fotoUrl} = this.auth.getCurrentUser();
+    const defaultFotoUrl = '../../assets/user.png';
+
+    return fotoUrl || defaultFotoUrl;
   }
 
 }

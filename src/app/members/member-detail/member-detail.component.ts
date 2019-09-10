@@ -48,6 +48,11 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
 
+  getFotoUrl() {
+    const { fotoUrl } = this.user;
+    const defaultFotoUrl = '../../../assets/user.png';
+    return fotoUrl || defaultFotoUrl;
+  }
 
   //  loadUser() {
   //    const id = +this.route.snapshot.params['id'];

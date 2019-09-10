@@ -48,8 +48,11 @@ export class FotoEditorComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         // response es un string, debemos convertir a object
-        const res: Foto = JSON.parse(response);
-        this.fotos.push(res);
+        const foto: Foto = JSON.parse(response);
+        this.fotos.push(foto);
+        if (foto.esPrincipal) {
+          this.authService.updateFotoUrl(foto.url);
+        }
       }
     };
   }
@@ -72,7 +75,7 @@ export class FotoEditorComponent implements OnInit {
 
   deleteFoto(id: number) {
     const { id: userId } = this.authService.getCurrentUser();
-    
+
     this.alertify.confirm('Esta seguro que desea eliminar esta foto?', () => {
       this.userService.deleteFoto(userId, id).subscribe(() => {
         this.fotos = this.fotos.filter(f => f.id != id);

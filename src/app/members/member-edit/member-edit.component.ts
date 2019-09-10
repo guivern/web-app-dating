@@ -56,6 +56,8 @@ export class MemberEditComponent implements OnInit {
   }
 
   getFotoUrl() {
-    return this.authService.getCurrentUser().fotoUrl;
+    const { fotoUrl } = this.authService.getCurrentUser();
+    const defaultFotoUrl = '../../../assets/user.png';
+    return fotoUrl || defaultFotoUrl;
   }
 }

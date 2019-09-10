@@ -2,6 +2,8 @@ import { AlertifyService } from './../_services/alertify.service';
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { User } from '../_models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +14,11 @@ export class RegisterComponent implements OnInit {
   @Input() valuesFromHome: any;
   @Output() cancelRegister = new EventEmitter;
 
-  model: any = {};
+  formModel: any;
   registerForm: FormGroup;
 
   constructor(private authService: AuthService, private alertify: AlertifyService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.createForm();
@@ -37,13 +39,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    // this.authService.register(this.model)
-    //   .subscribe(() => {
-    //     this.alertify.success('Registro exitoso');
-    //   }, err => {
-    //     this.alertify.error(err);
-    //   });
-    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+      this.formModel = this.registerForm.value;
+      this.authService.register(this.formModel)
+        .subscribe(() => {
+          this.alertify.success('Registro exitoso');
+        }, err => {
+          this.alertify.error(err);
+        }, () => {
+          // onComplete
+          const { username, password } = this.formModel;
+          const credenciales = { username, password };
+          this.authService.login(credenciales).subscribe(() => {
+            this.router.navigate(['members']);
+          });
+        });
+    }
   }
 
   passwordMatchValidator(form: FormGroup) {
