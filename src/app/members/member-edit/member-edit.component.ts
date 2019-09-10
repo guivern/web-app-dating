@@ -37,9 +37,6 @@ export class MemberEditComponent implements OnInit {
     });
   }
 
-  // esto ya no es necesario si vinculamos el usuario del localstorage
-  // en el template, debido que al actualizar la foto, tambien
-  // actualizamos el usuario en el localstorage.
   updateUser() {
     const userId = this.authService.getDecodedToken().nameid;
 
@@ -51,8 +48,11 @@ export class MemberEditComponent implements OnInit {
     });
   }
 
+  // esto ya no es necesario si vinculamos el usuario del localstorage
+  // en el template, debido que al actualizar la foto, tambien
+  // actualizamos el usuario en el localstorage.
   updateFoto(fotoUrl) {
-    this.user.fotoUrl = fotoUrl;
+    // this.user.fotoUrl = fotoUrl;
   }
 
   getFotoUrl() {
