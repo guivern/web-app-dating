@@ -2,7 +2,7 @@ import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -30,6 +30,12 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { FotoEditorComponent } from './members/foto-editor/foto-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { registerLocaleData } from '@angular/common';
+import locale from '@angular/common/locales/es-PY';
+import { TimeAgoPipe } from 'time-ago-pipe';
+
+// lenguaje local es-PY
+registerLocaleData(locale, 'es-PY');
 
 export function tokenGetter() {
    return localStorage.getItem('datingToken');
@@ -47,7 +53,8 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      FotoEditorComponent
+      FotoEditorComponent,
+      TimeAgoPipe
    ],
    imports: [
       BrowserModule,
@@ -77,7 +84,9 @@ export function tokenGetter() {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      // lenguaje local es-PY
+      { provide: LOCALE_ID, useValue: 'es-PY' }
    ],
    bootstrap: [
       AppComponent

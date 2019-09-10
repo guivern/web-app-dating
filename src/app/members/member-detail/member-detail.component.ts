@@ -4,6 +4,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryImage, NgxGalleryOptions, NgxGalleryAnimation } from 'ngx-gallery';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-member-detail',
@@ -52,6 +53,16 @@ export class MemberDetailComponent implements OnInit {
     const { fotoUrl } = this.user;
     const defaultFotoUrl = '../../../assets/user.png';
     return fotoUrl || defaultFotoUrl;
+  }
+  // retorna la ultima conexion con el sgte. formato:
+  // hace "x" [minutos, horas, dias]
+  formatearUltimaConexion() {
+    if (this.user.ultimaConexion) {
+      moment.locale('es-Es');
+      return moment(this.user.ultimaConexion).fromNow();
+    }
+
+    return 'Sin datos';
   }
 
   //  loadUser() {

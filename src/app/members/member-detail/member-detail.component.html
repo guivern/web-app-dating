@@ -8,7 +8,7 @@
         <img class="card-img-top img-thumbnail" src="{{getFotoUrl()}}" alt="{{user.nombre}}">
         <div class="card-body">
           <div>
-            <strong>Location:</strong>
+            <strong>Ubicación:</strong>
             <p>{{user.ciudad}}, {{user.pais}}</p>
           </div>
           <div>
@@ -17,11 +17,11 @@
           </div>
           <div>
             <strong>Ultima conexion:</strong>
-            <p>{{user.ultimaConexion}}</p>
+            <p>{{ formatearUltimaConexion() }}</p>
           </div>
           <div>
             <strong>Miembro desde:</strong>
-            <p>{{user.fechaCreacion}}</p>
+            <p>{{user.fechaCreacion | date}}</p>
           </div>
         </div>
         <div class="card-footer">
