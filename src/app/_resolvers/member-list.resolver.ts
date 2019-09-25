@@ -8,16 +8,21 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class MemberListResolver implements Resolve<User[]> {
-  constructor(private userService: UserService, private alertify: AlertifyService, private router: Router) { }
+  pageNumber = 1;
+  pageSize = 5;
+
+  constructor(private userService: UserService, private alertify: AlertifyService,
+    private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
-    return this.userService.getUsers().pipe(
-      // Si no se pudo obtener los datos, no carga el componente
-      catchError(error => {
-        this.alertify.error('Ocurrió un error al intentar obtener los datos');
-        this.router.navigate(['/home']);
-        return of(null);
-      })
-    );
+    return this.userService.getUsers(this.pageNumber, this.pageSize)
+      .pipe(
+        // Si no se pudo obtener los datos, no carga el componente
+        catchError(error => {
+          this.alertify.error('Ocurrió un error al intentar obtener los datos');
+          this.router.navigate(['/home']);
+          return of(null);
+        })
+      );
   }
 }
