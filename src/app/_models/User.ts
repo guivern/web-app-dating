@@ -12,6 +12,7 @@ export interface User {
     ciudad: string;
     pais: string;
     edad: Number;
+    genero: string;
     // propiedades opcionales
     intereses?: string;
     buscando?: string;
