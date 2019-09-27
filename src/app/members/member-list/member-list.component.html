@@ -37,17 +37,46 @@
         name="genero"
         [(ngModel)]="userParams.genero"
       >
-        <option *ngFor="let genero of generos" [value]="genero.value"> 
-          {{genero.display}}
+        <option *ngFor="let genero of generos" [value]="genero.value">
+          {{ genero.display }}
         </option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary" style="margin-left:10px">
       Filtrar
     </button>
-    <button type="button" (click)="limpiarFiltros()" class="btn btn-info" style="margin-left:10px">
+    <button
+      type="button"
+      (click)="limpiarFiltros()"
+      class="btn btn-info"
+      style="margin-left:10px"
+    >
       Limpiar
     </button>
+    <div class="col">
+      <div class="btn-group float-right">
+        <button
+          type="button"
+          name="orderBy"
+          class="btn btn-primary"
+          [(ngModel)]="userParams.orderBy"
+          btnRadio="ultimaConexion"
+          (click)="getUsers()"
+        >
+          Ultimos activos
+        </button>
+        <button
+          type="button"
+          name="orderBy"
+          class="btn btn-primary"
+          [(ngModel)]="userParams.orderBy"
+          btnRadio="fechaCreacion"
+          (click)="getUsers()"
+        >
+          Nuevos miembros
+        </button>
+      </div>
+    </div>
   </form>
   <br />
   <div class="row">

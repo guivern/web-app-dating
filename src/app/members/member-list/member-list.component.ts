@@ -29,12 +29,14 @@ export class MemberListComponent implements OnInit {
     this.userParams.genero = this.user.genero.toLowerCase() === 'hombre' ? 'mujer' : 'hombre';
     this.userParams.edadMin = 18;
     this.userParams.edadMax = 99;
+    this.userParams.orderBy = 'ultimaConexion';
   }
 
   limpiarFiltros() {
     this.userParams.genero = this.user.genero.toLowerCase() === 'hombre' ? 'mujer' : 'hombre';
     this.userParams.edadMin = 18;
     this.userParams.edadMax = 99;
+    this.userParams.orderBy = 'ultimaConexion';
     this.getUsers();
   }
 

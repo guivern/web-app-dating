@@ -29,6 +29,7 @@ export class UserService {
       params = params.append('genero', userParams.genero);
       params = params.append('edadMin', userParams.edadMin);
       params = params.append('edadMax', userParams.edadMax);
+      params = params.append('orderBy', userParams.orderBy);
     }
 
     if (pageNumber && pageSize) {
