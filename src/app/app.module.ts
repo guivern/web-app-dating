@@ -33,6 +33,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/es-PY';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 // lenguaje local es-PY
 registerLocaleData(locale, 'es-PY');
@@ -79,13 +80,14 @@ export function tokenGetter() {
    ],
    providers: [
       AuthService,
-      // ErrorInterceptorProvider,
+      ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
       UserService,
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      ListsResolver,
       PreventUnsavedChanges,
       // lenguaje local es-PY
       { provide: LOCALE_ID, useValue: 'es-PY' }
