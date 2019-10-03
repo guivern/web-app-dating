@@ -79,7 +79,7 @@ export function tokenGetter() {
    ],
    providers: [
       AuthService,
-      ErrorInterceptorProvider,
+      // ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
       UserService,

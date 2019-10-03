@@ -64,4 +64,7 @@ export class UserService {
     return this.http.delete(`${this.baseUrl}/users/${userId}/fotos/${fotoId}`);
   }
 
+  sendLike(likerId: number, likedId: number) {
+    return this.http.post(`${this.baseUrl}/users/${likerId}/like/${likedId}`, {});
+  }
 }
