@@ -1,19 +1,23 @@
 <div class="container mt-4">
   <div class="row">
-    <h2 class="ml-3">Perfil de {{user.nombre}}</h2>
+    <h2 class="ml-3">Perfil de {{ user.nombre }}</h2>
   </div>
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{getFotoUrl()}}" alt="{{user.nombre}}">
+        <img
+          class="card-img-top img-thumbnail"
+          src="{{ getFotoUrl() }}"
+          alt="{{ user.nombre }}"
+        />
         <div class="card-body">
           <div>
             <strong>Ubicación:</strong>
-            <p>{{user.ciudad}}, {{user.pais}}</p>
+            <p>{{ user.ciudad }}, {{ user.pais }}</p>
           </div>
           <div>
             <strong>Edad:</strong>
-            <p>{{user.edad}}</p>
+            <p>{{ user.edad }}</p>
           </div>
           <div>
             <strong>Ultima conexion:</strong>
@@ -21,7 +25,7 @@
           </div>
           <div>
             <strong>Miembro desde:</strong>
-            <p>{{user.fechaCreacion | date}}</p>
+            <p>{{ user.fechaCreacion | date }}</p>
           </div>
         </div>
         <div class="card-footer">
@@ -35,21 +39,24 @@
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="member-tabset">
-          <tab heading="Sobre {{user?.nombre}}">
+          <tab heading="Sobre {{ user?.nombre }}">
             <h4>Descripcion</h4>
-            <p>{{user.introduccion}}</p>
+            <p>{{ user.introduccion }}</p>
             <h4>Buscando</h4>
-            <p>{{user.buscando}}</p>
+            <p>{{ user.buscando }}</p>
           </tab>
           <tab heading="Intereses">
             <h4>Intereses</h4>
-            <p>{{user.intereses}}</p>
+            <p>{{ user.intereses }}</p>
           </tab>
           <tab heading="Fotos">
-            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            <ngx-gallery
+              [options]="galleryOptions"
+              [images]="galleryImages"
+            ></ngx-gallery>
           </tab>
           <tab heading="Mensajes">
-            <p>Aqui iran los mensajes</p>
+            <app-member-messages [receptorId]="user.id"></app-member-messages>
           </tab>
         </tabset>
       </div>

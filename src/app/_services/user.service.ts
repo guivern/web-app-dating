@@ -5,6 +5,7 @@ import { User } from '../_models/User';
 import { environment } from 'src/environments/environment';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
+import { Mensaje } from '../_models/mensaje';
 
 // const httpOptions = {
 //  headers: new HttpHeaders({
@@ -74,5 +75,33 @@ export class UserService {
 
   sendLike(likerId: number, likedId: number) {
     return this.http.post(`${this.baseUrl}/users/${likerId}/like/${likedId}`, {});
+  }
+
+  getMensajes(userId: number, pageNumber?, pageSize?, buzon?) {
+    const paginatedResult = new PaginatedResult<Mensaje[]>();
+    let params = new HttpParams();
+
+    params = params.append('buzon', buzon);
+
+    if (pageNumber && pageSize) {
+      params = params.append('pageNumber', pageNumber);
+      params = params.append('pageSize', pageSize);
+    }
+
+    return this.http.get<Mensaje[]>(`${this.baseUrl}/users/${userId}/mensajes`,
+      { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          paginatedResult.pagination = JSON.parse(response.headers.get('pagination'));
+
+          return paginatedResult;
+        })
+      );
+  }
+
+  getConversacion(userId: number, receptorId: number) {
+    return this.http.get<Mensaje[]>(
+      `${this.baseUrl}/users/${userId}/mensajes/conversacion/${receptorId}`);
   }
 }

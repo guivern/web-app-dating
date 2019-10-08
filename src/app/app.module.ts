@@ -34,6 +34,8 @@ import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/es-PY';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { MensajesResolver } from './_resolvers/mensajes.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 // lenguaje local es-PY
 registerLocaleData(locale, 'es-PY');
@@ -55,6 +57,7 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       FotoEditorComponent,
+      MemberMessagesComponent,
       TimeAgoPipe
    ],
    imports: [
@@ -88,6 +91,7 @@ export function tokenGetter() {
       MemberListResolver,
       MemberEditResolver,
       ListsResolver,
+      MensajesResolver,
       PreventUnsavedChanges,
       // lenguaje local es-PY
       { provide: LOCALE_ID, useValue: 'es-PY' }
