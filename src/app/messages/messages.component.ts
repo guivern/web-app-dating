@@ -5,6 +5,7 @@ import { UserService } from '../_services/user.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-messages',
@@ -41,6 +42,13 @@ export class MessagesComponent implements OnInit {
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.getMensajes();
+  }
+
+  // retorna la ultima conexion con el sgte. formato:
+  // hace "x" [minutos, horas, dias]
+  formatearFechaEnvio(fechaEnvio: Date) {
+    moment.locale('es-Es');
+    return moment(fechaEnvio).fromNow();
   }
 
 }

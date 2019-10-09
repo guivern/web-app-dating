@@ -3,6 +3,7 @@ import { Mensaje } from 'src/app/_models/mensaje';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-member-messages',
@@ -28,6 +29,11 @@ export class MemberMessagesComponent implements OnInit {
       }, error => {
         this.alertify.error(error);
       });
+  }
+
+  formatFecha(fechaEnvio: Date) {
+    moment.locale('es-Es');
+    return moment(fechaEnvio).fromNow();
   }
 
 }

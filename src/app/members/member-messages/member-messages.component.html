@@ -1,3 +1,74 @@
-<p *ngFor="let mensaje of mensajes">
-  {{ mensaje.contenido }}
-</p>
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="mensajes?.length === 0">
+      <p>Envia un mensaje y empieza una conversacion</p>
+    </div>
+
+    <ul class="chat">
+      <li *ngFor="let mensaje of mensajes">
+        <!-- recibidos -->
+        <div *ngIf="mensaje.emisorId == receptorId">
+          <span class="chat-img float-left">
+            <img
+              src="{{ mensaje.fotoEmisorUrl }}"
+              alt=""
+              class="rounded-circle"
+            />
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <strong class="primary-font">{{ mensaje.emisorNombre }}</strong>
+              <small class="text-muted float-right">
+                <span class="fa fa-clock-o">
+                  {{ formatFecha(mensaje.fechaEnvio) }}
+                </span>
+              </small>
+            </div>
+            <p>{{ mensaje.contenido }}</p>
+          </div>
+        </div>
+
+        <!-- enviados -->
+        <div *ngIf="mensaje.emisorId != receptorId">
+          <span class="chat-img float-right">
+            <img
+              src="{{ mensaje.fotoEmisorUrl }}"
+              alt=""
+              class="rounded-circle"
+            />
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <small class="text-muted">
+                <span class="fa fa-clock-o">
+                  {{ formatFecha(mensaje.fechaEnvio) }}
+                </span>
+                <span *ngIf="!mensaje.haSidoLeido" class="text-danger">
+                  (No leido)
+                </span>
+                <span *ngIf="mensaje.haSidoLeido" class="text-success">
+                  (Leido {{ formatFecha(mensaje.fechaEnvio) }})
+                </span>
+              </small>
+              <strong class="primary-font float-right">{{ mensaje.emisorNombre }}</strong>
+            </div>
+            <p>{{ mensaje.contenido }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <form action=""></form>
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control input-sm"
+        placeholder="Envia un mensaje"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
