@@ -13,6 +13,7 @@ import * as moment from 'moment';
 export class MemberMessagesComponent implements OnInit {
   @Input() receptorId: number;
   mensajes: Mensaje[];
+  mensaje: any = {};
 
   constructor(private userService: UserService, private authService: AuthService,
     private alertify: AlertifyService) { }
@@ -34,6 +35,20 @@ export class MemberMessagesComponent implements OnInit {
   formatFecha(fechaEnvio: Date) {
     moment.locale('es-Es');
     return moment(fechaEnvio).fromNow();
+  }
+
+  enviarMensaje() {
+    const { id: emisorId } = this.authService.getCurrentUser();
+    this.mensaje.receptorId = this.receptorId;
+    this.userService.enviarMensaje(emisorId, this.mensaje)
+      .subscribe((mensaje: Mensaje) => {
+        // activa debugger y agrega punto de parada
+        // debugger;
+        this.mensajes.unshift(mensaje);
+        this.mensaje.contenido = '';
+      }, error => {
+        this.alertify.error(error);
+      });
   }
 
 }

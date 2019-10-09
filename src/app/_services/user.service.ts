@@ -104,4 +104,8 @@ export class UserService {
     return this.http.get<Mensaje[]>(
       `${this.baseUrl}/users/${userId}/mensajes/conversacion/${receptorId}`);
   }
+
+  enviarMensaje(emisorId: number, mensaje: Mensaje) {
+    return this.http.post(`${this.baseUrl}/users/${emisorId}/mensajes`, mensaje);
+  }
 }

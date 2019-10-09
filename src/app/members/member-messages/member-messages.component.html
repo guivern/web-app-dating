@@ -50,7 +50,9 @@
                   (Leido {{ formatFecha(mensaje.fechaEnvio) }})
                 </span>
               </small>
-              <strong class="primary-font float-right">{{ mensaje.emisorNombre }}</strong>
+              <strong class="primary-font float-right">{{
+                mensaje.emisorNombre
+              }}</strong>
             </div>
             <p>{{ mensaje.contenido }}</p>
           </div>
@@ -59,16 +61,26 @@
     </ul>
   </div>
   <div class="card-footer">
-    <form action=""></form>
-    <div class="input-group">
-      <input
-        type="text"
-        class="form-control input-sm"
-        placeholder="Envia un mensaje"
-      />
-      <div class="input-group-append">
-        <button class="btn btn-primary">Enviar</button>
+    <form #mensajeForm="ngForm" (ngSubmit)="enviarMensaje()">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control input-sm"
+          placeholder="Envia un mensaje"
+          [(ngModel)]="mensaje.contenido"
+          name="contenido"
+          required
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-primary"
+            [disabled]="!mensajeForm.valid"
+            type="submit"
+          >
+            Enviar
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
