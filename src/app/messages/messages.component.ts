@@ -39,6 +39,19 @@ export class MessagesComponent implements OnInit {
       });
   }
 
+  eliminarMensaje(id: number) {
+    this.alertify.confirm('Esta seguro que desea eliminar este mensaje?', () => {
+      const { id: userId } = this.authService.getCurrentUser();
+      this.userService.eliminarMensaje(id, userId).subscribe(
+        () => {
+          this.mensajes = this.mensajes.filter(m => m.id != id);
+          this.alertify.success('Mensaje eliminado');
+        }, error => {
+          this.alertify.error(error);
+        });
+    });
+  }
+
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.getMensajes();

@@ -64,7 +64,12 @@
         </td>
         <td>{{ formatearFechaEnvio(mensaje.fechaEnvio) }}</td>
         <td>
-          <button class="btn btn-danger">Borrar</button>
+          <button 
+            class="btn btn-danger" 
+            (click)="$event.stopPropagation()"
+            (click)="eliminarMensaje(mensaje.id)"
+          >Borrar
+          </button>
         </td>
       </tr>
     </table>

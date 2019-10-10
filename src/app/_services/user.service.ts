@@ -108,4 +108,8 @@ export class UserService {
   enviarMensaje(emisorId: number, mensaje: Mensaje) {
     return this.http.post(`${this.baseUrl}/users/${emisorId}/mensajes`, mensaje);
   }
+
+  eliminarMensaje(mensajeId: number, userId: number) {
+    return this.http.post(`${this.baseUrl}/users/${userId}/mensajes/${mensajeId}`, {});
+  }
 }
