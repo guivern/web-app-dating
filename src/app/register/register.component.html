@@ -6,7 +6,6 @@
     <label class="control-label" style="margin-right:20px">Soy: </label>
     <label class="radio-inline">
       <input
-        class="mr-3"
         type="radio"
         value="hombre"
         formControlName="genero"
@@ -14,29 +13,13 @@
     </label>
     <label class="radio-inline ml-3">
       <input
-        class="mr-3"
         type="radio"
         value="mujer"
         formControlName="genero"
       />Mujer
     </label>
   </div>
-  <!-- username -->
-  <div class="form-group">
-    <input
-      type="text"
-      [ngClass]="{
-        'is-invalid':
-          registerForm.get('username').errors &&
-          registerForm.get('username').touched
-      }"
-      class="form-control"
-      placeholder="Nombre de usuario"
-      name="username"
-      formControlName="username"
-    />
-    <div class="invalid-feedback">Por favor, ingrese un nombre de usuario</div>
-  </div>
+  
   <!-- nombre -->
   <div class="form-group">
     <input
@@ -203,7 +186,7 @@
       }"
       name="confirmPassword"
       class="form-control"
-      placeholder="Confirmar Contraseña"
+      placeholder="Confirmar contraseña"
       formControlName="confirmPassword"
     />
     <div
@@ -227,7 +210,7 @@
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success" type="submit" [disabled]="registerForm.invalid">Registrar</button>
+    <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Registrar</button>
     <button class="btn btn-default" type="button" (click)="cancel()">
       Cancelar
     </button>

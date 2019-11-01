@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   createForm() {
     this.registerForm = this.formBuilder.group({
       genero: ['hombre'],
-      username: ['', Validators.required],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],
@@ -41,6 +40,7 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.registerForm.valid) {
       this.formModel = this.registerForm.value;
+      this.formModel.username = this.formModel.nombre;
       this.authService.register(this.formModel)
         .subscribe(() => {
           this.alertify.success('Registro exitoso');

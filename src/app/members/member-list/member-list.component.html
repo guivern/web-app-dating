@@ -1,85 +1,87 @@
 <div class="text-center mt-3">
-  <h2>Conicidencias encontradas - {{ pagination.totalCount }}</h2>
+  <h3>Conicidencias - {{ pagination.totalCount }}</h3>
 </div>
 
 <div class="container mt-3">
   <form class="form-inline" #form="ngForm" (ngSubmit)="getUsers()" novalidate>
-    <div class="form-group">
-      <label for="minAge">Edad mínima</label>
-      <input
-        type="number"
-        class="form-control ml-1"
-        style="width: 70px"
-        id="edadMin"
-        name="edadMin"
-        [(ngModel)]="userParams.edadMin"
-      />
-    </div>
+    <div class="form-row">
+      <div class="col">
+        <label for="minAge">Edad mín.</label>
+        <input
+          type="number"
+          class="form-control"
+          style="width: 90px"
+          id="edadMin"
+          name="edadMin"
+          [(ngModel)]="userParams.edadMin"
+        />
+      </div>
 
-    <div class="form-group px-2">
-      <label for="maxAge">Edad máxima</label>
-      <input
-        type="number"
-        class="form-control ml-1"
-        style="width: 70px"
-        id="edadMax"
-        name="edadMax"
-        [(ngModel)]="userParams.edadMax"
-      />
-    </div>
+      <div class="col">
+        <label for="maxAge">Edad máx.</label>
+        <input
+          type="number"
+          class="form-control"
+          style="width: 90px"
+          id="edadMax"
+          name="edadMax"
+          [(ngModel)]="userParams.edadMax"
+        />
+      </div>
 
-    <div class="form-group px-2">
-      <label for="genero">Ver: </label>
-      <select
-        class="form-control ml-1"
-        style="width: 130px"
-        id="genero"
-        name="genero"
-        [(ngModel)]="userParams.genero"
-      >
-        <option *ngFor="let genero of generos" [value]="genero.value">
-          {{ genero.display }}
-        </option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary" style="margin-left:10px">
-      Filtrar
-    </button>
-    <button
-      type="button"
-      (click)="limpiarFiltros()"
-      class="btn btn-info"
-      style="margin-left:10px"
-    >
-      Limpiar
-    </button>
-    <div class="col">
-      <div class="btn-group float-right">
-        <button
-          type="button"
-          name="orderBy"
-          class="btn btn-primary"
-          [(ngModel)]="userParams.orderBy"
-          btnRadio="ultimaConexion"
-          (click)="getUsers()"
+      <div class="col">
+        <label for="genero">Ver: </label>
+        <select
+          class="form-control"
+          style="width: 120px"
+          id="genero"
+          name="genero"
+          [(ngModel)]="userParams.genero"
         >
-          Ultimos activos
+          <option *ngFor="let genero of generos" [value]="genero.value">
+            {{ genero.display }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col btn-group mt-4">
+        <button type="submit" class="btn btn-primary">
+          Filtrar
         </button>
-        <button
-          type="button"
-          name="orderBy"
-          class="btn btn-primary"
-          [(ngModel)]="userParams.orderBy"
-          btnRadio="fechaCreacion"
-          (click)="getUsers()"
-        >
-          Nuevos miembros
+        <button type="button" (click)="limpiarFiltros()" class="btn btn-info">
+          Limpiar
         </button>
       </div>
+      <!-- <div class="form-row">
+        <div class="col">
+          <div class="btn-group">
+            <button
+              type="button"
+              name="orderBy"
+              class="btn btn-primary"
+              [(ngModel)]="userParams.orderBy"
+              btnRadio="ultimaConexion"
+              (click)="getUsers()"
+            >
+              Ultimos activos
+            </button>
+            <button
+              type="button"
+              name="orderBy"
+              class="btn btn-primary"
+              [(ngModel)]="userParams.orderBy"
+              btnRadio="fechaCreacion"
+              (click)="getUsers()"
+            >
+              Nuevos miembros
+            </button>
+          </div>
+        </div>
+      </div> -->
     </div>
   </form>
   <br />
-  <div class="row">
+  <div class="row" style="overflow-y: auto; max-height: 500px;">
     <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
       <app-member-card [user]="user"></app-member-card>
     </div>

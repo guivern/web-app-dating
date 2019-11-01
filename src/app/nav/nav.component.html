@@ -1,66 +1,71 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div class="container">
-    
     <a class="navbar-brand" [routerLink]="['/home']">Dating App</a>
-    
-    <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/members']">Coincidencias</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/lists']">Listas</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/messages']">Mensajes</a>
-      </li>
-    </ul>
-    
-    <div *ngIf="loggedIn()" class="dropdown" dropdown>
-      <span class="mr-1">
-        <img src="{{getFotoUrl()}}" alt="">
-      </span>
-      <a class="dropdown-toggle text-light" dropdownToggle>
-        Bienvenido {{ auth.getUsername() | titlecase }}
-      </a>
-      <div class="dropdown-menu mt3" *dropdownMenu>
-        <a class="dropdown-item" [routerLink]="['/member/edit']" >
-          <i class="fa fa-user"></i>Editar perfil</a
-        >
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()">
-          <i class="fa fa-sign-out"></i>Cerrar sesión</a
-        >
+
+    <button #navbarToggler class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" (click)="isShown = !isShown" [attr.aria-expanded]="isShown"  aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarSupportedContent" >
+      <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/members']">Coincidencias</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/lists']">Listas</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/messages']">Mensajes</a>
+        </li>
+      </ul>
+
+      <div *ngIf="loggedIn()" class="dropdown" dropdown>
+        <span class="mr-1">
+          <img src="{{ getFotoUrl() }}" alt="" />
+        </span>
+        <a class="dropdown-toggle text-light" dropdownToggle>
+          Bienvenido {{ auth.getUsername() | titlecase }}
+        </a>
+        <div class="dropdown-menu mt3" *dropdownMenu>
+          <a class="dropdown-item" [routerLink]="['/member/edit']">
+            <i class="fa fa-user"></i>Editar perfil</a
+          >
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+            <i class="fa fa-sign-out"></i>Cerrar sesión</a
+          >
+        </div>
       </div>
-    </div>
-    <form
-      *ngIf="!loggedIn()"
-      #loginForm="ngForm"
-      class="form-inline my-2 my-lg-0"
-      (ngSubmit)="login()"
-    >
-      <input
-        class="form-control mr-sm-2"
-        name="username"
-        type="text"
-        required
-        placeholder="Nombre de usuario"
-        [(ngModel)]="model.username"
-      />
-      <input
-        class="form-control mr-sm-2"
-        name="password"
-        type="password"
-        required
-        placeholder="Contraseña"
-        [(ngModel)]="model.password"
-      />
-      <button
-        [disabled]="!loginForm.valid"
-        class="btn btn-success my-2 my-sm-0"
-        type="submit"
+      <form
+        *ngIf="!loggedIn()"
+        #loginForm="ngForm"
+        class="form-inline my-2 my-lg-0"
+        (ngSubmit)="login()"
       >
-        Entrar
-      </button>
-    </form>
+        <input
+          class="form-control mr-sm-2"
+          name="username"
+          type="text"
+          required
+          placeholder="Nombre de usuario"
+          [(ngModel)]="model.username"
+        />
+        <input
+          class="form-control mr-sm-2"
+          name="password"
+          type="password"
+          required
+          placeholder="Contraseña"
+          [(ngModel)]="model.password"
+        />
+        <button
+          [disabled]="!loginForm.valid"
+          class="btn btn-success my-2 my-sm-0"
+          type="submit"
+        >
+          Entrar
+        </button>
+      </form>
+    </div>
   </div>
 </nav>
