@@ -13,20 +13,21 @@ export class NavComponent implements OnInit {
   fotoUrl: string;
 
   constructor(public auth: AuthService, private alertify: AlertifyService, private router: Router) { }
-  isShown:boolean = false;
-  
+  isShown: boolean = false;
+
   ngOnInit() {
     // this.auth.fotoUrlActual.subscribe(fotoUrl => this.fotoUrl = fotoUrl);
   }
 
   login() {
     this.auth.login(this.model)
-    .subscribe( resp => {
-      this.router.navigate(['/members']);
-      this.alertify.success('Login exitoso');
-    }, err => {
-      this.alertify.error(err);
-    });
+      .subscribe(resp => {
+        this.model = {};
+        this.router.navigate(['/members']);
+        this.alertify.success('Login exitoso');
+      }, err => {
+        this.alertify.error(err);
+      });
   }
 
   loggedIn() {
@@ -41,7 +42,7 @@ export class NavComponent implements OnInit {
   }
 
   getFotoUrl() {
-    const {fotoUrl} = this.auth.getCurrentUser();
+    const { fotoUrl } = this.auth.getCurrentUser();
     const defaultFotoUrl = '../../assets/user.png';
 
     return fotoUrl || defaultFotoUrl;

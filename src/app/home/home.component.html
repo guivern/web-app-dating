@@ -1,21 +1,31 @@
 <div class="container mt-5">
   <div *ngIf="!registerMode" style="text-align: center">
-    <h1>Encuentra tu pareja</h1>
+    <h1>Encuentra una cita</h1>
     <p class="lead">
-      ¡Ven a ver tus partidos ... Todo lo que necesitas hacer es registrarte!
+      ¡Ven a ver tus partidos ... Todo lo que necesitás hacer es registrarte!
     </p>
     <div class="text-center">
       <button class="btn btn-primary btn-lg mr-2" (click)="registerMode = true">
-        Regístrate
+        Regístrate gratís
       </button>
-      <button class="btn btn-info btn-lg">Leer más</button>
+
+      <div class="mt-4">
+        <hr />
+        <p>
+          O puedes dar una vuelta ingresando como invitado!
+        </p>
+        <button class="btn btn-outline-dark" (click)="loginInvitado()">Ingresar como invitado</button>
+      </div>
     </div>
   </div>
 
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-4 col-sm-8">
-        <app-register *ngIf="registerMode" (cancelRegister)="registerMode = false"></app-register>
+        <app-register
+          *ngIf="registerMode"
+          (cancelRegister)="registerMode = false"
+        ></app-register>
       </div>
     </div>
   </div>
